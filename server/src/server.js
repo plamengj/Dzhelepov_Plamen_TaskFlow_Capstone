@@ -10,20 +10,7 @@ dotenv.config();
 // Create Express app
 const app = express();
 
-// Security headers middleware
-app.use((req, res, next) => {
-    res.setHeader('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
-    res.setHeader('Cross-Origin-Embedder-Policy', 'credentialless');
-    res.setHeader('Access-Control-Allow-Origin', process.env.NODE_ENV === 'production' 
-        ? 'https://taskflow-frontend.netlify.app' 
-        : 'http://localhost:3000');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    next();
-});
-
-// CORS middleware
+// Middleware
 app.use(cors({
     origin: [
         process.env.NODE_ENV === 'production' 
@@ -32,7 +19,6 @@ app.use(cors({
     ],
     credentials: true
 }));
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
