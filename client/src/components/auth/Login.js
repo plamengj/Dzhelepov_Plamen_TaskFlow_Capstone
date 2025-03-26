@@ -43,8 +43,8 @@ const Login = () => {
                     auto_select: false,
                     cancel_on_tap_outside: true,
                     context: 'signin',
-                    ux_mode: 'redirect',
-                    redirect_uri: window.location.origin
+                    ux_mode: 'popup',
+                    popup_parent_id: 'googleSignInDiv'
                 });
                 window.google.accounts.id.renderButton(
                     document.getElementById('googleSignInDiv'),
